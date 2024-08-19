@@ -28,28 +28,43 @@ let news = [
 let users = [
     {
       id:1,
-      userName:"John Doe",
-      avatar:"https://www.flaticon.com/free-icon/boy_1999625?term=avatar&page=1&position=16&origin=search&related_id=1999625"
+      userName:"Alice",
+      avatar:"https://i.ibb.co/N7L03bm/woman.png"
     },
     {
         id:2,
         userName:"Will Smith",
-        avatar:"https://www.flaticon.com/free-icon/man_4140061?term=avatar&page=1&position=32&origin=search&related_id=4140061"
+        avatar:"https://i.ibb.co/Lk5cqbw/man.png"
     },
     {
         id:3,
         userName:"Aly Hany",
-        avatar:"https://www.flaticon.com/free-icon/man_2202112?term=avatar&page=1&position=2&origin=search&related_id=2202112"
+        avatar:"https://i.ibb.co/smfgspT/image.png"
     }
 
 ];
+//Users Apis
+app.get('/users/getAll',(req,res)=>{
+    res.json(users);
+})
+app.get('/users/loggedInUser',(req,res)=>{
+    res.json(users[2]);
+})
+app.post('/users/add',(req,res)=>{
+news.push(req.body);
+})
+//News Apis
 app.get('/news/getAll',(req,res)=>{
 res.json(news);
+})
+app.get('/news/myNews/:id',(req,res)=>{
+    const id = parseInt(req.params.id);
+    const myNews=news.filter(news=>news.postedBy===id);
+    res.json(myNews);
 })
 app.post('/news/add',(req,res)=>{
 news.push(req.body);
 })
-
 
 app.listen(3004, () => {
     console.log("Server is running on port 3004");
