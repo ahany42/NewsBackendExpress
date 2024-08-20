@@ -103,6 +103,16 @@ app.delete('/news/delete/:id',(req,res)=>{
     const id = parseInt(req.params.id);
     news=news.filter(news=>news.id!==id);
 })
+app.patch('/news/edit/:id',(req,res)=>{
+  const id = parseInt(req.params.id);
+  const updates = req.body;
+  const updatedNews = news.find(news => news.id===id);
+  if(!updatedNews){
+    return res.status(404).send('Item not found');
+  }
+  Object.assign(updatedNews,updates);
+  res.status(200).json(updatedNews);
+})
 app.listen(3004, () => {
     console.log("Server is running on port 3004");
 });
