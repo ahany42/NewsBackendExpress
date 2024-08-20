@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors"); 
+const bodyParser = require('body-parser');
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 let users = [
     {
         id:1,
@@ -17,6 +19,11 @@ let users = [
         id:3,
         userName:"Aly Hany",
         avatar:"https://i.ibb.co/KLcQKYv/image.png"
+    },
+    {   id:4,
+        userName: "Jane",
+        avatar:"https://i.ibb.co/vj2dBQr/144-1448593-avatar-icon-teacher-avatar.png"
+
     }
     
 ];
@@ -25,30 +32,43 @@ let news = [
       id:1,
       title: "New Football Academy Opens",
       body: "Our new football academy opens its doors to young talents. Join us to develop your skills with the best coaches.",
-      date: "2024-08-19",
-      color:"#c4dee3",
+      date: "19-06-2024",
       postedBy:3
     },
     {
       id:2,
       title: "Summer Camp Registration",
       body: "Register now for our summer football camp! Limited spots available for an intensive training experience.",
-      date: "2024-07-15",
-      color:"#c4dee3",
+      date: "15-07-2024",
       postedBy:2
     },
     {
       id:3,
       title: "Friendly Match Announcement",
       body: "Come watch our academy players compete in a friendly match against a local club. Event details inside.",
-      date: "2024-06-30",
-      color:"#c4dee3",
+      date: "30-07-2024",
       postedBy:1
+    },
+    {
+      id:4,
+      title: "New Football Academy Opens",
+      body: "Our new football academy opens its doors to young talents. Join us to develop your skills with the best coaches.",
+      date: "17-08-2024",
+      postedBy:3
+    }
+    ,
+    {
+      id:5,
+      title: "New Football Academy Opens",
+      body: "Our new football academy opens its doors to young talents. Join us to develop your skills with the best coaches.",
+      date: "19-08-2024",
+      postedBy:4
     }
   ];
   news = news.map(item => ({
     ...item,
-    avatar: users.find(user => user.id === item.postedBy)?.avatar
+    avatar: users.find(user => user.id === item.postedBy)?.avatar,
+    userName:users.find(user=>user.id === item.postedBy)?.userName
   }));
 //Users Apis
 app.get('/users/getAll',(req,res)=>{
@@ -70,7 +90,14 @@ app.get('/news/myNews/:id',(req,res)=>{
     res.json(myNews);
 })
 app.post('/news/add',(req,res)=>{
-news.push(req.body);
+  let newNews=req.body;
+  if(!newNews){
+    return res.status(400).json({ message: 'Invalid news item' ,data:newNews.title+newNews.body});
+  }
+  else{
+    news.push(newNews);
+    return res.status(201).json({ message: 'News item added successfully' });
+  }
 })
 app.delete('/news/delete/:id',(req,res)=>{
     const id = parseInt(req.params.id);
