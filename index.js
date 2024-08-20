@@ -89,6 +89,11 @@ app.get('/news/myNews/:id',(req,res)=>{
     const myNews=news.filter(news=>news.postedBy===id);
     res.json(myNews);
 })
+app.get('/news/:id',(req,res)=>{
+  const id = parseInt(req.params.id);
+  const desiredNews = news.find(news=>news.id===id);
+  res.json(desiredNews);
+})
 app.post('/news/add',(req,res)=>{
   let newNews=req.body;
   if(!newNews){
