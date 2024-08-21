@@ -57,6 +57,10 @@ let news = [
     avatar: users.find(user => user.id === item.postedBy)?.avatar,
     userName:users.find(user=>user.id === item.postedBy)?.userName
   }));
+  app.get('/',(req,res)=>{
+    res.write("Apis are working");
+    res.end();
+  })
 //Users Apis
 app.get('/users/getAll',(req,res)=>{
     res.json(users);
