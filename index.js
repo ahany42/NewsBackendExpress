@@ -31,35 +31,21 @@ let users = [
 let news = [
     {
       id:1,
-      title: "New Football Academy Opens",
-      body: "Our new football academy opens its doors to young talents. Join us to develop your skills with the best coaches.",
-      date: "19-06-2024",
-      postedBy:3
-    },
-    {
-      id:2,
       title: "Summer Camp Registration",
       body: "Register now for our summer football camp! Limited spots available for an intensive training experience.",
       date: "15-07-2024",
       postedBy:2
     },
     {
-      id:3,
+      id:2,
       title: "Friendly Match Announcement",
       body: "Come watch our academy players compete in a friendly match against a local club. Event details inside.",
       date: "30-07-2024",
       postedBy:1
     },
-    {
-      id:4,
-      title: "New Football Academy Opens",
-      body: "Our new football academy opens its doors to young talents. Join us to develop your skills with the best coaches.",
-      date: "17-08-2024",
-      postedBy:3
-    }
     ,
     {
-      id:5,
+      id:3,
       title: "New Football Academy Opens",
       body: "Our new football academy opens its doors to young talents. Join us to develop your skills with the best coaches.",
       date: "19-08-2024",
