@@ -43,7 +43,6 @@ let news = [
       date: "30-07-2024",
       postedBy:1
     },
-    ,
     {
       id:3,
       title: "New Football Academy Opens",
