@@ -49,7 +49,15 @@ let news = [
       body: "Our new football academy opens its doors to young talents. Join us to develop your skills with the best coaches.",
       date: "19-08-2024",
       postedBy:4
+    },
+    {
+      id:4,
+      title: "New Football Academy Opens",
+      body: "Our new football academy opens its doors to young talents. Join us to develop your skills with the best coaches.",
+      date: "19-08-2024",
+      postedBy:3
     }
+    
   ];
   news = news.map(item => ({
     ...item,
