@@ -102,10 +102,19 @@ app.post('/news/add',(req,res)=>{
     return res.status(201).json({ message: 'News item added successfully' });
   }
 })
-app.delete('/news/delete/:id',(req,res)=>{
-    const id = parseInt(req.params.id);
-    news=news.filter(news=>news.id!==id);
-})
+app.delete('/news/delete/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  if (isNaN(id)) {
+      return res.status(400).json({ error: 'Invalid ID parameter' });
+  }
+  const index = news.findIndex(newsItem => newsItem.id === id);
+  if (index === -1) {
+      return res.status(404).json({ error: 'News item not found' });
+  }
+  news.splice(index, 1);
+  res.status(200).json({ message: 'News item deleted successfully' });
+});
+
 app.patch('/news/edit/:id',(req,res)=>{
   const id = parseInt(req.params.id);
   const updates = req.body;
