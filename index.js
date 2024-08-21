@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+const port = process.env.PORT || 3000;
 let users = [
     {
         id:1,
@@ -118,6 +119,6 @@ app.patch('/news/edit/:id',(req,res)=>{
   Object.assign(updatedNews,updates);
   res.status(200).json(updatedNews);
 })
-app.listen(3004, () => {
-    console.log("Server is running on port 3004");
+app.listen(port, () => {
+    console.log(`Server is running on ${port}`);
 });
